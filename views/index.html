@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question Paper Generator</title>
+</head>
+<body>
+  <h1>Question Paper Generator</h1>
+  <form action="/generate-question-paper" method="POST">
+    <label for="difficulty">Difficulty:</label>
+    <select name="difficulty" id="difficulty">
+      <option value="Easy">Easy</option>
+      <option value="Medium">Medium</option>
+      <option value="Hard">Hard</option>
+    </select>
+    <br>
+    <label for="totalMarks">Total Marks:</label>
+    <input type="number" name="totalMarks" id="totalMarks" required>
+    <br>
+    <button type="submit">Generate Question Paper</button>
+  </form>
+
+  <div id="output">
+    
+    <h2>Generated Question Paper:</h2>
+    <ul id="questionPaperList"></ul>
+  </div>
+
+  <script>
+    const displayQuestionPaper = (questionPaper) => {
+      const questionPaperList = document.getElementById('questionPaperList');
+      questionPaperList.innerHTML = '';
+
+      questionPaper.forEach((question) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${question.question} - ${question.difficulty} - ${question.marks} marks`;
+        questionPaperList.appendChild(listItem);
+      });
+    };
+  </script>
+</body>
+</html> 
